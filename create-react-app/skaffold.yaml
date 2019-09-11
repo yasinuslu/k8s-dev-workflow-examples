@@ -1,0 +1,23 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: gcr.io/create-react-app/ui
+      context: ui
+      docker:
+        target: dev
+      sync:
+        manual:
+          - src: "src/*"
+            dest: .
+          - src: "public/*"
+            dest: .
+
+profiles:
+  - name: prod
+    build:
+      artifacts:
+        - image: gcr.io/create-react-app/ui
+          context: ui
+          docker:
+            target: prod
