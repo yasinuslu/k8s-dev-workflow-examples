@@ -1,0 +1,35 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: gcr.io/nuxt-ssr/ui
+      context: ui
+      docker:
+        target: dev
+      sync:
+        manual:
+          - src: "assets/*"
+            dest: .
+          - src: "components/*"
+            dest: .
+          - src: "layouts/*"
+            dest: .
+          - src: "middleware/*"
+            dest: .
+          - src: "pages/*"
+            dest: .
+          - src: "plugins/*"
+            dest: .
+          - src: "static/*"
+            dest: .
+          - src: "store/*"
+            dest: .
+
+profiles:
+  - name: prod
+    build:
+      artifacts:
+        - image: gcr.io/nuxt-ssr/ui
+          context: ui
+          docker:
+            target: prod
