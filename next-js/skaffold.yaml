@@ -1,0 +1,25 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: gcr.io/next-js/ui
+      context: ui
+      docker:
+        target: dev
+      sync:
+        manual:
+          - src: "components/*"
+            dest: .
+          - src: "pages/*"
+            dest: .
+          - src: "static/*"
+            dest: .
+
+profiles:
+  - name: prod
+    build:
+      artifacts:
+        - image: gcr.io/next-js/ui
+          context: ui
+          docker:
+            target: prod
