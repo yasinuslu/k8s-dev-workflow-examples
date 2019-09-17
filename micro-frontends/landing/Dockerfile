@@ -14,6 +14,8 @@ RUN yarn install --frozen-lockfile
 
 COPY . /app
 
+ENV PORT=80
+
 CMD ["yarn", "dev"]
 
 # starting point for production image
@@ -24,5 +26,7 @@ WORKDIR /app
 COPY --from=dev /app /app
 
 RUN yarn build
+
+ENV PORT=80
 
 CMD ["yarn", "start"]

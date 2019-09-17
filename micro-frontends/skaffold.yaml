@@ -2,33 +2,65 @@ apiVersion: skaffold/v1beta13
 kind: Config
 build:
   artifacts:
+    - image: gcr.io/micro-frontends/search
+      context: search
+      docker:
+        target: dev
+      sync:
+        manual:
+          - src: "src/*"
+            dest: .
+          - src: "public/*"
+            dest: .
+
+    - image: gcr.io/micro-frontends/product
+      context: product
+      docker:
+        target: dev
+      sync:
+        manual:
+          - src: "components/**/*"
+            dest: .
+          - src: "pages/**/*"
+            dest: .
+          - src: "static/**/*"
+            dest: .
+
     - image: gcr.io/micro-frontends/landing
       context: landing
       docker:
         target: dev
       sync:
         manual:
-          - src: "assets/*"
+          - src: "assets/**/*"
             dest: .
-          - src: "components/*"
+          - src: "components/**/*"
             dest: .
-          - src: "layouts/*"
+          - src: "layouts/**/*"
             dest: .
-          - src: "middleware/*"
+          - src: "middleware/**/*"
             dest: .
-          - src: "pages/*"
+          - src: "pages/**/*"
             dest: .
-          - src: "plugins/*"
+          - src: "plugins/**/*"
             dest: .
-          - src: "static/*"
+          - src: "static/**/*"
             dest: .
-          - src: "store/*"
+          - src: "store/**/*"
             dest: .
 
 profiles:
   - name: prod
     build:
       artifacts:
+        - image: gcr.io/micro-frontends/search
+          context: search
+          docker:
+            target: prod
+        - image: gcr.io/micro-frontends/product
+          context: product
+          docker:
+            target: prod
         - image: gcr.io/micro-frontends/landing
           context: landing
           docker:
