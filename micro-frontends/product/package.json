@@ -1,0 +1,16 @@
+{
+  "name": "product",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "next": "9.0.5",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
+  }
+}
