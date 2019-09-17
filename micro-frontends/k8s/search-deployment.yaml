@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: landing
+  name: search
 spec:
   selector:
     matchLabels:
-      app: landing
+      app: search
   template:
     metadata:
       labels:
-        app: landing
+        app: search
     spec:
       containers:
-        - name: landing
-          image: gcr.io/micro-frontends/landing
+        - name: search
+          image: gcr.io/micro-frontends/search
           ports:
             - containerPort: 80

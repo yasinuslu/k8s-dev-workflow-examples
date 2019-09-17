@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: landing-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /search
+            backend:
+              serviceName: search
+              servicePort: 3200
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: landing
+              servicePort: 3100
+    - http:
+        paths:
+          - path: /product
+            backend:
+              serviceName: product
+              servicePort: 3000
